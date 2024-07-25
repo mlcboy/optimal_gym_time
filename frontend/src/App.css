@@ -1,0 +1,99 @@
+body {
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: row; /* Change to row to place form and graph side by side */
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #007acc;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  flex: 1;  /* Takes up 1 part of the flex container */
+  display: flex;
+  flex-direction: column; /* Stack the title and form vertically */
+  align-items: flex-start;
+  padding-right: 20px; /* Adds padding to the right */
+  margin-right: 20px; /* Adds margin to the right for spacing */
+  box-sizing: border-box;
+}
+
+.label, .dropdown, input[type="checkbox"], input[type="range"], button {
+  display: block;
+  margin: 10px 0;
+}
+
+.dropdown, input[type="range"], button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.dropdown {
+  background-color: #3c3c3c;
+  color: #dcdcdc;
+}
+
+input[type="range"] {
+  background-color: #3c3c3c;
+}
+
+button {
+  background-color: #007acc;
+  color: #dcdcdc;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005a8d;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #dcdcdc;
+}
+
+.graph-container {
+  flex: 2;  /* Takes up 2 parts of the flex container, making it larger */
+  display: flex;
+  justify-content: center; /* Center the graph horizontally */
+  align-items: center; /* Center the graph vertically */
+  padding: 40px; /* Increased padding for more space around the graph */
+  background-color: #3c3c3c;  /* Match background color of dropdown and range input */
+  border-radius: 10px;  /* Rounded corners for the graph container */
+  box-sizing: border-box;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+}
+
+.slider-label {
+  flex: 1;
+  text-align: center;
+}
+
+.slider-label.small {
+  font-size: 12px; /* Adjust the font size as needed */
+}
+
+input[type="range"] {
+  flex: 8; /* Adjust the flex value to ensure the slider has enough space */
+  margin: 0 10px; /* Adjust the margin to create space between the slider and labels */
+}
+
