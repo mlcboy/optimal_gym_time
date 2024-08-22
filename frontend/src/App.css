@@ -1,63 +1,123 @@
+/* Ensure the same font is applied to all select elements (dropdowns), input fields, and buttons */
+select, input, button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* General App Styling */
 body {
   background-color: #1e1e1e;
   color: #dcdcdc;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .app-container {
   display: flex;
-  flex-direction: row; /* Change to row to place form and graph side by side */
-  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.content-container {
+  display: flex;
+  width: 90vw;
+  height: 90vh;
   padding: 20px;
   box-sizing: border-box;
+
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-right: 20px;
+  width: 100%;
+}
+
+.optimal-time-display {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007acc;
+  border-radius: 40px;
+  text-align: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.optimal-time-title {
+  padding-bottom: 20px;
+}
+
+.right-section {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3c3c3c;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 20px;
 }
 
 h1 {
   color: #007acc;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .form-container {
-  flex: 1;  /* Takes up 1 part of the flex container */
+  flex: 1;
   display: flex;
-  flex-direction: column; /* Stack the title and form vertically */
+  flex-direction: column;
   align-items: flex-start;
-  padding-right: 20px; /* Adds padding to the right */
-  margin-right: 20px; /* Adds margin to the right for spacing */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #282828;
+  width: 100%;
+  overflow-y: auto;
   box-sizing: border-box;
 }
 
-.label, .dropdown, input[type="checkbox"], input[type="range"], button {
-  display: block;
-  margin: 10px 0;
+.chronotype-label {
+  text-align: center;
+  background-color: #005a8d;
+  padding: 5px 10px;
+  margin-top: 10px;
+  border-radius: 3px;
+  color: #dcdcdc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown, input[type="range"], button {
+.form-container input,
+.form-container select,
+.form-container button {
+  max-width: 300px;
   width: 100%;
   padding: 10px;
-  border: none;
-  border-radius: 3px;
-  box-sizing: border-box;
-}
-
-.dropdown {
+  margin: 10px 0;
   background-color: #3c3c3c;
   color: #dcdcdc;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply consistent font */
 }
 
-input[type="range"] {
-  background-color: #3c3c3c;
-}
-
-button {
+.form-container button {
   background-color: #007acc;
   color: #dcdcdc;
   cursor: pointer;
 }
 
-button:hover {
+.form-container button:hover {
   background-color: #005a8d;
 }
 
@@ -68,14 +128,35 @@ button:hover {
 }
 
 .graph-container {
-  flex: 2;  /* Takes up 2 parts of the flex container, making it larger */
+  flex: 2;
   display: flex;
-  justify-content: center; /* Center the graph horizontally */
-  align-items: center; /* Center the graph vertically */
-  padding: 40px; /* Increased padding for more space around the graph */
-  background-color: #3c3c3c;  /* Match background color of dropdown and range input */
-  border-radius: 10px;  /* Rounded corners for the graph container */
+  justify-content: center;
+  align-items: center;
+  width: 100%;  
+  height: 100%;
+  background-color: #3c3c3c;
+  border-radius: 10px;
   box-sizing: border-box;
+}
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply consistent font */
+}
+
+.checkbox-container input {
+  margin-left: 10px;
 }
 
 .slider-container {
@@ -86,14 +167,132 @@ button:hover {
 .slider-label {
   flex: 1;
   text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply consistent font */
 }
 
 .slider-label.small {
-  font-size: 12px; /* Adjust the font size as needed */
+  font-size: 12px;
 }
 
 input[type="range"] {
-  flex: 8; /* Adjust the flex value to ensure the slider has enough space */
-  margin: 0 10px; /* Adjust the margin to create space between the slider and labels */
+  flex: 8;
+  margin: 0 10px;
 }
 
+.divider {
+  width: 100%;
+  border-top: 1px solid rgba(220, 220, 220, 0.5); /* Use a faint border */
+  margin: 20px 0;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply consistent font */
+}
+
+.radio-container label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply consistent font */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-section {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .right-section {
+    width: 100%;
+  }
+
+  .form-container {
+    margin-right: 0;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+/* Dropdown Styling */
+.dropdown {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #3c3c3c;
+  color: #dcdcdc;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.dropdown option {
+  background-color: #3c3c3c;
+  color: #dcdcdc;
+}
+
+/* Custom Dropdown Styling */
+.time-dropdown {
+  width: 100%;
+  padding-top: 10px;
+  position: relative;
+  cursor: pointer;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply consistent font */
+}
+
+.time-dropdown-header {
+  background-color: #3c3c3c;
+  color: #dcdcdc;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply consistent font */
+}
+
+.time-dropdown-container {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 7.2rem;
+  overflow-y: auto;
+  background-color: #3c3c3c;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  z-index: 10;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply consistent font */
+}
+
+.time-dropdown-option {
+  text-align: center;
+  scroll-snap-align: center;
+  padding: 0;
+  color: #dcdcdc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.4rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply consistent font */
+}
+
+.time-dropdown-option.selected {
+  color: #007acc;
+  font-weight: bold;
+}
+
+.time-dropdown-option:hover {
+  background-color: #575757;
+}
