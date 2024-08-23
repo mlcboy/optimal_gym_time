@@ -24,13 +24,6 @@ chronotype_peaks = {
     "definite_morning": 17.2167 * 3600   # 5:13 PM
 }
 
-# Meal effect durations in hours
-meal_effects = {
-    "carbs": 1.0,
-    "protein": 1.5,
-    "fat": 2.0
-}
-
 @app.route('/')
 def serve():
     return send_from_directory(app.static_folder, 'index.html')
@@ -80,15 +73,26 @@ def optimal_gym_time():
     meal_scores = np.zeros_like(times)
     
     if has_eaten:
-        peak_meal_time = (meal_time + 2) * 3600
-        meal_effect = meal_effects.get(meal_type, 1.0)
-        meal_scores = graph.normalize_bell_curve(times, peak_meal_time, std_dev=1)
+        std = 0.5
+        if meal_type == "carbs": 
+            peak_meal_time = (meal_time + 1) * 3600
+            std = 0.5
+            weight_meal = 0.15
+        elif meal_type == "carbs and protein":
+            peak_meal_time = (meal_time + 2) * 3600
+            std = 0.75
+            weight_meal = 0.2
+        else: #fat
+            peak_meal_time = (meal_time + 3) * 3600
+            std = 1
+            weight_meal = 0.1
+        meal_scores = graph.normalize_bell_curve(times, peak_meal_time, std)
 
     # Assign weights to each factor
     weight_body_temp = 0.5
     weight_caffeine = 0.2 if drink_caffeine else 0
     weight_crowd = crowdedness_weight
-    weight_meal = 0.2 if has_eaten else 0
+    if not has_eaten: weight_meal = 0
 
     # Calculate weighted scores for each factor
     weighted_body_temp = weight_body_temp * body_temp_scores
@@ -139,8 +143,6 @@ def optimal_gym_time():
     shifted_crowd_scores = np.roll(weighted_crowd, -shift_by).tolist()
     shifted_meal_scores = np.roll(weighted_meal, -shift_by).tolist()
     shifted_final_scores = np.roll(final_scores, -shift_by).tolist()
-
-    # shifted_final_scores = [score if score != float('-inf') else None for score in final_scores]
 
     # Return the optimal time and shifted datasets as a string with leading zeros if necessary
     return jsonify({

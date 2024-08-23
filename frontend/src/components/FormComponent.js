@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { convertToAmPm, convertAmPmTo24Hour, optimalTimeConverter } from '../utils/timeUtils';
 import TimeDropdown from './TimeDropdown';
+import Tooltip from './Tooltip';
 import './OptimalTimeDisplay.css';
 import '../App.css';
 
@@ -147,7 +148,10 @@ const FormComponent = ({
       <div className="section">
         <h2 className="section-title">Basics</h2>
 
-        <label htmlFor="chronotype">Chronotype:</label>
+        <label htmlFor="chronotype">
+          Chronotype:
+          <Tooltip text="Your chronotype represents your natural preference for waking up early or late." />
+          </label>
         <div className="chronotype-slider-container" style={{ display: 'flex', alignItems: 'center' }}>
           <BirdIcon style={{ marginRight: '15px' }} />
           <input
@@ -165,7 +169,10 @@ const FormComponent = ({
         <div className="chronotype-label">{getChronotypeLabel()}</div>
 
         <br />
-        <label htmlFor="day">Day of the Week:</label>
+        <label htmlFor="day">
+          Day of the Week:
+          <Tooltip text="The day of the week influences gym crowd levels based on historical data." />
+        </label>
         <select id="day" value={day} onChange={(e) => setDay(parseInt(e.target.value))} className="dropdown">
           <option value="1">Monday</option>
           <option value="2">Tuesday</option>
@@ -241,10 +248,13 @@ const FormComponent = ({
 
         {hasEaten && (
           <>
-            <label htmlFor="mealType">Meal Type:</label>
+            <label htmlFor="mealType">
+              Meal Macronutrients:
+              <Tooltip text="The macronutrient composition of your meal can influence your exercise performance and the timing of your energy peak." />
+            </label>
             <select id="mealType" value={mealType} onChange={(e) => setMealType(e.target.value)} className="dropdown">
               <option value="carbs">Carbs</option>
-              <option value="protein">Protein</option>
+              <option value="carbs and protein">Carbs and Protein</option>
               <option value="fat">Fat</option>
             </select>
             <br />
@@ -280,7 +290,10 @@ const FormComponent = ({
         <br />
         <br />
 
-        <label>Blocked Times:</label>
+        <label>
+          Blocked Times:
+          <Tooltip text="Exclude specific times from being considered in your optimal gym time calculation." />
+        </label>
         {blockedTimes.map((bt, index) => (
           <div key={index} className="blocked-time-container">
             <br></br>

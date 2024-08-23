@@ -1,0 +1,57 @@
+.tooltip-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 5px;
+  width: 10px; /* Adjust the size of the question mark circle */
+  height: 10px;
+  border: 2px solid #007acc; /* Light blue outline */
+  color: #007acc; /* Light blue question mark */
+  border-radius: 50%;
+  text-align: center;
+  line-height: 11px; /* Center the question mark vertically */
+  font-size: 12px; /* Adjust the font size of the question mark */
+  font-weight: bold;
+  background-color: transparent; /* No fill color */
+  vertical-align: middle; /* Keep the tooltip aligned with text */
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 150px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position the tooltip above */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: normal; /* Ensure text wraps */
+}
+
+.tooltip-wrapper:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Optional: Tooltip arrow */
+.tooltip-text::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Arrow positioned at the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
