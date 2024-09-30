@@ -6,7 +6,7 @@ from backend import graphing_functions as graph  # Ensure this file exists in th
 import os
 
 # Initialize Flask app
-app = Flask(__name__, static_folder="../frontend/build", static_url_path="")
+app = Flask(__name__, static_folder="backend/build", static_url_path="")
 CORS(app)
 
 # Load the dataset once at the start
