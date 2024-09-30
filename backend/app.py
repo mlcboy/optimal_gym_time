@@ -7,8 +7,8 @@ import os
 
 # Initialize Flask app
 app = Flask(__name__,
-            static_folder='frontend/build/static',  # Adjust this to your static files path
-            template_folder='frontend/build')  # Adjust this to your HTML files path
+            static_folder='../frontend/build/static',  # Adjust this to your static files path
+            template_folder='../frontend/build')  # Adjust this to your HTML files path
 CORS(app)
 
 print("Static Folder:", app.static_folder)
