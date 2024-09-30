@@ -3,6 +3,7 @@ from flask_cors import CORS
 import pandas as pd
 import numpy as np
 import graphing_functions as graph
+import os
 
 app = Flask(__name__, static_folder="../frontend/build", static_url_path="")
 CORS(app)
@@ -157,4 +158,5 @@ def optimal_gym_time():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Get the port from the environment variable or default to 5000
+    app.run(host='0.0.0.0', port=port)  # Run the app on all interfaces
