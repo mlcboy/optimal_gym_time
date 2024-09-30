@@ -2,11 +2,11 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import pandas as pd
 import numpy as np
-from backend import graphing_functions as graph
+import graphing_functions as graph
 import os
 
 # Initialize Flask app
-app = Flask(__name__, static_folder="../frontend/build", static_url_path="")
+app = Flask(__name__, static_folder="../frontend/build", template_folder="../frontend/build")
 CORS(app)
 
 # Load the dataset once at the start
@@ -31,9 +31,6 @@ chronotype_peaks = {
 def serve():
     return send_from_directory(app.static_folder, 'index.html')
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.static_folder, 'favicon.ico'))
     
 # API route for optimal gym time
 @app.route('/optimal_gym_time', methods=['GET'])
