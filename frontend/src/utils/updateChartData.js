@@ -22,6 +22,12 @@ export const updateChartData = (
   // Generate labels for each 10-minute interval in a 24-hour period
   const labels = generateHourLabels(wakeUpTime);
 
+  console.log('Body Temp Scores:', data.body_temp_scores);
+  console.log('Crowd Scores:', data.crowd_scores);
+  console.log('Caffeine Scores:', data.caffeine_scores);
+  console.log('Meal Scores:', data.meal_scores);
+  console.log('Final Scores:', data.final_scores);
+
   // Create datasets for the chart
   const datasets = [
     {
