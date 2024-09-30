@@ -27,9 +27,9 @@ chronotype_peaks = {
 }
 
 # Route to serve the static frontend
-@app.route('/')
-def serve():
-    return send_from_directory(app.static_folder, 'index.html')
+@app.route('/<path:path>')
+def static_serve(path):
+    return send_from_directory(app.static_folder, path)
 
 # API route for optimal gym time
 @app.route('/optimal_gym_time', methods=['GET'])
@@ -125,6 +125,10 @@ def optimal_gym_time():
         'optimal_time': formatted_optimal_time,
         'final_scores': final_scores.tolist()
     })
+
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # Get the port from the environment variable or default to 5000
