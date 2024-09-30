@@ -8,7 +8,7 @@ app = Flask(__name__, static_folder="../frontend/build", static_url_path="")
 CORS(app)
 
 # Load the dataset once at the start
-gym_data = pd.read_csv("gym_crowds.csv")
+gym_data = pd.read_csv("backend/gym_crowds.csv")
 gym_data['date'] = pd.to_datetime(gym_data['date'])
 gym_data_during_semester = gym_data[gym_data['is_during_semester'] == 1]
 
