@@ -6,9 +6,13 @@ import graphing_functions as graph
 import os
 
 # Initialize Flask app
-app = Flask(__name__, static_folder="../frontend/build", template_folder="../frontend/build")
+app = Flask(__name__,
+            static_folder='frontend/build/static',  # Adjust this to your static files path
+            template_folder='frontend/build')  # Adjust this to your HTML files path
 CORS(app)
 
+print("Static Folder:", app.static_folder)
+print("Template Folder:", app.template_folder)
 # Load the dataset once at the start
 gym_data = pd.read_csv("backend/gym_crowds.csv")
 gym_data['date'] = pd.to_datetime(gym_data['date'])
